@@ -77,6 +77,14 @@ export default {
         <body>
           <div id="app"></div>
           <script src="index.js"></script>
+          <script src="hello.js"></script>
+          <script src="wasm_exec.js"></script>
+          <script>
+            const go = new Go();
+            WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
+              go.run(result.instance);});
+          </script>
+
         </body>
         </html>
         `;
