@@ -7,7 +7,7 @@
     "dev": "rollup -c -w",
     "build": "rimraf public && cross-env NODE_ENV=production rollup -c",
     "start": "serve public",
-    "gobuild": "./go/build.sh"
+    "gobuild": "cd go && tinygo build -target wasm -o ../public/main.wasm"
   },
   "dependencies": {
     "@rollup/plugin-wasm": "^5.1.2",
