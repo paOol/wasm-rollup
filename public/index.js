@@ -33720,8 +33720,8 @@
 	function App() {
 	  var _useState = react.exports.useState(),
 	      _useState2 = _slicedToArray(_useState, 2),
-	      wasmAdd = _useState2[0],
-	      setWasmAdd = _useState2[1];
+	      wasmAdd = _useState2[0];
+	      _useState2[1];
 
 	  react.exports.useEffect(function () {
 	    _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
@@ -33729,16 +33729,6 @@
 	        while (1) {
 	          switch (_context.prev = _context.next) {
 	            case 0:
-	              //  const wasm = fetch('main.wasm');
-	              WebAssembly.instantiateStreaming(fetch('main.wasm')).then(function (obj) {
-	                console.log('obj', obj);
-	                setWasmAdd(obj.instance.exports); // Call an exported function:
-
-	                var test = obj.instance.exports.add(1, 2);
-	                console.log('test', test);
-	              });
-
-	            case 1:
 	            case "end":
 	              return _context.stop();
 	          }
@@ -33748,7 +33738,7 @@
 	  }, []); // const { loaded, instance, error } = useAsBind(wasm);
 	  //  console.log('loaded, instance, error', loaded, instance, error);
 
-	  return /*#__PURE__*/React.createElement(React.Fragment, null, wasmAdd && /*#__PURE__*/React.createElement("p", null, " Rollup + TypeScript + React = ", wasmAdd.add(31, 2)));
+	  return /*#__PURE__*/React.createElement(React.Fragment, null, wasmAdd && /*#__PURE__*/React.createElement("p", null, " Rollup + TypeScript + React = ", wasmAdd.add(31, 2)), /*#__PURE__*/React.createElement("div", null, "hello"));
 	}
 
 	ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.getElementById('app'));
