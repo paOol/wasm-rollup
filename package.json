@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "rollup -c -w",
     "build": "rimraf public && cross-env NODE_ENV=production rollup -c",
-    "start": "serve public"
+    "start": "serve public",
+    "gobuild": "./go/build.sh"
   },
   "dependencies": {
     "@rollup/plugin-wasm": "^5.1.2",
