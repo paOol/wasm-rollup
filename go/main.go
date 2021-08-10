@@ -5,15 +5,14 @@ import (
 	"syscall/js"
 )
 
-// func RegisterCallbacks() {
-// 	js.Global().Set("add", js.FuncOf(add))
-// 	js.Global().Set("helloWorld", js.FuncOf(helloWorld))
-// }
-
 func main() {
+	// open channel to prevent closing the go app
+	c := make(chan int)
 	fmt.Println("Hello World line 17")
 	addJSGlobals()
 	addGOtoDOM()
+	addFunctionsToJS()
+	<-c
 }
 
 func addGOtoDOM() {
@@ -25,6 +24,7 @@ func addGOtoDOM() {
 	document.Get("body").Call("appendChild", myH1)
 }
 
+// reads from hello.js and outputs to console
 func addJSGlobals() {
 	num := js.Global().Call("add", 1, 1)
 	println(num.Int())
@@ -38,10 +38,16 @@ func addJSGlobals() {
 	js.Global().Get("obj").Set("keys", "123445")
 }
 
-// func add(a, b int) int {
-// 	return a + b
-// }
+// interface{}  is like  the typescript "any" type
+func add(this js.Value, inputs []js.Value) interface{} {
+	return inputs[0].Float() + inputs[1].Float()
+}
 
-// func helloWorld() string {
-// 	return "Hello World from GO"
-// }
+func helloWorld(this js.Value, inputs []js.Value) interface{} {
+	return "Hello World from GO"
+}
+
+func addFunctionsToJS() {
+	js.Global().Set("add", js.FuncOf(add))
+	js.Global().Set("helloWorld", js.FuncOf(helloWorld))
+}
