@@ -8,6 +8,7 @@ import (
 func main() {
 	// open channel to prevent closing the go app
 	c := make(chan int)
+	//c := make(chan struct{}, 0)
 	fmt.Println("Hello World line 17")
 	addJSGlobals()
 	addGOtoDOM()
