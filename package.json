@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "rollup -c -w",
-    "build": "rimraf public && cross-env NODE_ENV=production rollup -c",
+    "build": "cross-env NODE_ENV=production rollup -c",
     "start": "serve public",
     "gobuild": "cd go && tinygo build -target wasm -o ../public/main.wasm"
   },

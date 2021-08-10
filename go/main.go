@@ -13,6 +13,16 @@ import (
 func main() {
 	fmt.Println("Hello World line 17")
 	addJSGlobals()
+	addGOtoDOM()
+}
+
+func addGOtoDOM() {
+	document := js.Global().Get("document")
+
+	myH1 := document.Call("createElement", "h1")
+	myH1.Set("innerText", "Hello from GO")
+
+	document.Get("body").Call("appendChild", myH1)
 }
 
 func addJSGlobals() {
