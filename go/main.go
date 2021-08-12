@@ -40,7 +40,7 @@ func addJSGlobals() {
 }
 
 // interface{}  is like  the typescript "any" type
-func add(this js.Value, inputs []js.Value) interface{} {
+func addGo(this js.Value, inputs []js.Value) interface{} {
 	return inputs[0].Float() + inputs[1].Float()
 }
 
@@ -49,6 +49,6 @@ func helloWorld(this js.Value, inputs []js.Value) interface{} {
 }
 
 func addFunctionsToJS() {
-	js.Global().Set("add", js.FuncOf(add))
+	js.Global().Set("addGo", js.FuncOf(addGo))
 	js.Global().Set("helloWorld", js.FuncOf(helloWorld))
 }
