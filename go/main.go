@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"syscall/js"
 )
 
@@ -9,7 +8,7 @@ func main() {
 	// open channel to prevent closing the go app
 	c := make(chan int)
 	//c := make(chan struct{}, 0)
-	fmt.Println("Hello World line 17")
+
 	addJSGlobals()
 	addGOtoDOM()
 	addFunctionsToJS()
@@ -28,15 +27,19 @@ func addGOtoDOM() {
 // reads from hello.js and outputs to console
 func addJSGlobals() {
 	num := js.Global().Call("add", 1, 1)
+	println("line 31 go")
 	println(num.Int())
 
 	s := js.Global().Call("hello").String()
+	println("line 35 go")
 	println(s)
 
 	test := js.Global().Get("test").String()
+	println("line 39 go")
 	println(test)
 
 	js.Global().Get("obj").Set("keys", "123445")
+	println("console log 'obj'")
 }
 
 // interface{}  is like  the typescript "any" type
